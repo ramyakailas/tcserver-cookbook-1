@@ -32,10 +32,9 @@ remote_file "#{file_cache_path}/#{node['tcserver']['rpm_filename']}" do
   group 'root'
   mode '0644'
   source node['tcserver']['rpm_url']
-  checksum node['tcserver']['rpm_sum']
 end
 
-rpm_package node['tcserver']['rpm_filename'] do
+package node['tcserver']['rpm_filename'] do
   source "#{file_cache_path}/#{node['tcserver']['rpm_filename']}"
 end
 
@@ -56,3 +55,4 @@ tcserver_ctl node['tcserver']['server_name'] do
   action :start
   not_if { tcserver =~ /RUNNING as/ }
 end
+

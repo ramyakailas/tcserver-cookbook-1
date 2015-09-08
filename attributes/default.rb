@@ -17,7 +17,7 @@
 # limitations under the License.
 
 default['tcserver']['rpm_filename'] = 'vfabric-tc-server-standard-2.9.5-SR1.noarch.rpm'
-default['tcserver']['rpm_url'] = "change_this_url"
-default['tcserver']['rpm_sum'] = 'change_this_rpm_sum'
+
+default['tcserver']['rpm_url'] = "https://dl.dropboxusercontent.com/u/3639771/#{ node['tcserver']['rpm_filename'] }"
 default['tcserver']['file_cache_path'] = '/tmp'
 default['tcserver']['server_name'] = 'myserver'
