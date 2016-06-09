@@ -51,8 +51,34 @@ tcserver_instance node['tcserver']['server_name'] do
   not_if { ::Dir.exist?('/opt/vmware/vfabric-tc-server-standard/myserver/bin/') }
 end
 
+
+cookbook_file "#{node['tcserver']['warpath']}/CrunchifyTutorial-0.0.1-SNAPSHOT.war" do
+  source 'CrunchifyTutorial-0.0.1-SNAPSHOT.war'
+  owner 'root'
+  group 'root'
+  mode 00644
+end
+
 tcserver_ctl node['tcserver']['server_name'] do
   action :start
   not_if { tcserver =~ /RUNNING as/ }
 end
 
+include_recipe 'ohai'
+ohai 'reload_tcserver' do
+  plugin 'tcserver'
+  action :nothing
+end
+
+directory '/etc/chef/ohai_plugins' do
+  recursive true
+end
+
+cookbook_file '/etc/chef/ohai_plugins/tcserver.rb' do
+  source 'plugins/tcserver.rb'
+  action :create
+  owner 'root'
+  group 'root'
+  mode 0644
+  notifies :reload, 'ohai[reload_tcserver]', :immediately
+end
