@@ -38,31 +38,37 @@ package node['tcserver']['rpm_filename'] do
   source "#{file_cache_path}/#{node['tcserver']['rpm_filename']}"
 end
 
+node['instances'].each do |value|
 begin
   tcserver = Mixlib::ShellOut.new(
-    '/opt/vmware/vfabric-tc-server-standard/myserver/bin/tcruntime-ctl.sh status',
+    "/opt/vmware/vfabric-tc-server-standard/#{value['instance_name']}/bin/tcruntime-ctl.sh status",
     :user => 'root').run_command.stdout
 rescue
   tcserver = ''
 end
 
-tcserver_instance node['tcserver']['server_name'] do
+tcserver_instance value['instance_name'] do
   action :create
-  not_if { ::Dir.exist?('/opt/vmware/vfabric-tc-server-standard/myserver/bin/') }
+  not_if { ::Dir.exist?("/opt/vmware/vfabric-tc-server-standard/value['instance_name']/bin/") }
 end
 
-
-cookbook_file "#{node['tcserver']['warpath']}/CrunchifyTutorial-0.0.1-SNAPSHOT.war" do
-  source 'CrunchifyTutorial-0.0.1-SNAPSHOT.war'
-  owner 'root'
-  group 'root'
-  mode 00644
+value['wars'].each do |war_name|
+  puts war_name.inspect
+artifact_deploy war_name['name'] do
+  version           '2.10'
+  artifact_location war_name['url']
+  deploy_to         "/opt/vmware/vfabric-tc-server-standard/#{value['instance_name']}/webapps/#{war_name['name']}"
+  owner             'root'
+  group             'root'
+end
 end
 
-tcserver_ctl node['tcserver']['server_name'] do
+tcserver_ctl value['instance_name'] do
   action :start
   not_if { tcserver =~ /RUNNING as/ }
 end
+end
+
 
 include_recipe 'ohai'
 ohai 'reload_tcserver' do

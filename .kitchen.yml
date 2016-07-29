@@ -7,11 +7,15 @@ driver_config:
 
 provisioner:
   name: chef_zero
+  data_bags_path: 'test/integration/default/data_bags'
+  roles_path: 'test/integration/default/roles'
+  environment_path: 'test/integration/default/environments'
 
 platforms:
   - name: centos-6.7
     run_list:
       - recipe[yum::default]
+
   # - name: ubuntu-12.04
   #   run_list:
   #     - recipe[apt::default]
@@ -20,4 +24,5 @@ suites:
   - name: default
     run_list:
       - recipe[tcserver::default]
+      - role[war_hotel]
     attributes:

@@ -1,0 +1,27 @@
+{
+  "name": "dev",
+  "default_attributes": {
+   "instances": [
+     {
+       "instance_name": "test-instance1",
+       "wars": [
+         {
+           "name": "scalatra-shopping-cart_2.10-0.1.0-SNAPSHOT.war",
+           "url": "https://bintray.com/ytaras/wars/download_file?file_path=scalatra-shopping-cart%2Fscalatra-shopping-cart_2.10-0.1.0-SNAPSHOT.war",
+           "version": "2.10-0.1.0"
+         },
+         {
+           "name": "aerogear-unifiedpush-server-0.9.0.war",
+           "url": "https://bintray.com/matzew/AeroGear-UnifiedPush/download_file?file_path=org%2Fjboss%2Faerogear%2Funifiedpush%2Faerogear-unifiedpush-server%2F0.9.0%2Faerogear-unifiedpush-server-0.9.0.war",
+           "version": "0.9.0"
+         }
+       ]
+     }
+   ]
+ },
+  "json_class": "Chef::Environment",
+  "description": "",
+  "cookbook_versions": {
+  },
+  "chef_type": "environment"
+}

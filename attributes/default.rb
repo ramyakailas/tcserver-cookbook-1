@@ -20,5 +20,5 @@ default['tcserver']['rpm_filename'] = 'vfabric-tc-server-standard-2.9.5-SR1.noar
 
 default['tcserver']['rpm_url'] = "https://dl.dropboxusercontent.com/u/3639771/#{ node['tcserver']['rpm_filename'] }"
 default['tcserver']['file_cache_path'] = '/tmp'
-default['tcserver']['server_name'] = 'myserver'
-default['tcserver']['warpath'] = '/opt/vmware/vfabric-tc-server-standard/myserver/webapps'
+default['tcserver']['server_name'] = 'test-instance1'
+default['tcserver']['warpath'] = "/opt/vmware/vfabric-tc-server-standard/#{ node['tcserver']['server_name']}/webapps"
