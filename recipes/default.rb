@@ -39,6 +39,7 @@ package node['tcserver']['rpm_filename'] do
 end
 
 node['instances'].each do |value|
+  puts value.inspect
 begin
   tcserver = Mixlib::ShellOut.new(
     "/opt/vmware/vfabric-tc-server-standard/#{value['instance_name']}/bin/tcruntime-ctl.sh status",

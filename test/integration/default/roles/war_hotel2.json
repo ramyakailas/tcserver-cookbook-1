@@ -1,20 +1,24 @@
 {
    "name": "war_hotel2",
-   "description": "This is the description for the war_hotel role.",
+   "description": "This is the description for the war_hotel2 role.",
    "json_class": "Chef::Role",
    "default_attributes": {
-     "tenants": [
-       {
-         "instance_name": "test-instance2",
-         "name": "scalatra-shopping-cart_2.10-0.1.0-SNAPSHOT.war",
-         "url": "https://bintray.com/ytaras/wars/download_file?file_path=scalatra-shopping-cart%2Fscalatra-shopping-cart_2.10-0.1.0-SNAPSHOT.war"
-       },
-       {
-         "name": "aerogear-unifiedpush-server-0.9.0.war",
-         "url": "https://bintray.com/matzew/AeroGear-UnifiedPush/download_file?file_path=org%2Fjboss%2Faerogear%2Funifiedpush%2Faerogear-unifiedpush-server%2F0.9.0%2Faerogear-unifiedpush-server-0.9.0.war"
-       }
-     ]
-   },
+    "instances": [
+      {
+        "instance_name": "test-instance2",
+        "wars": [
+          {
+            "name": "guvnor-distribution-wars-5.3.2.Final-tomcat-6.0.war",
+            "url": "https://bintray.com/bintray/jcenter/download_file?file_path=org%2Fdrools%2Fguvnor-distribution-wars%2F5.3.2.Final%2Fguvnor-distribution-wars-5.3.2.Final-tomcat-6.0.war"
+          },
+          {
+            "name": "dashbuilder-distribution-wars-0.1.3.Final-tomcat7.0.war",
+            "url": "https://bintray.com/bintray/jcenter/download_file?file_path=org%2Fdashbuilder%2Fdashbuilder-distribution-wars%2F0.1.3.Final%2Fdashbuilder-distribution-wars-0.1.3.Final-tomcat7.0.war"
+          }
+        ]
+      }
+    ]
+  },
    "override_attributes": {
    },
    "chef_type": "role",

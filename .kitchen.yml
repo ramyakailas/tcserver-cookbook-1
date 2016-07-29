@@ -25,4 +25,5 @@ suites:
     run_list:
       - recipe[tcserver::default]
       - role[war_hotel]
+      - role[war_hotel2]
     attributes:
